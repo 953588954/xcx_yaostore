@@ -1,0 +1,53 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/theme/theme",
+        "pages/category/category",
+        "pages/product/product",
+        "pages/cart/cart",
+        "pages/my/my",
+        "pages/order/order",
+        "pages/address/address",
+        "pages/about-our/about-our",
+        "pages/logistics/logistics",
+        "pages/pay-result/pay-result",
+        "pages/comment/comment"
+    ],
+    "window": {
+        "navigationBarTitleText": "铭玺大药房",
+        "navigationBarBackgroundColor": "#AB956D",
+        "navigationBarTextStyle": "white"
+    },
+    "tabBar": {
+        "color": "#666",
+        "selectedColor": "#AB956D",
+        "backgroundColor": "#f5f5f5",
+        "borderStyle": "white",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "/imgs/tabbar/home.png",
+                "selectedIconPath": "/imgs/tabbar/home@selected.png"
+            },
+            {
+                "pagePath": "pages/category/category",
+                "text": "分类",
+                "iconPath": "/imgs/tabbar/category.png",
+                "selectedIconPath": "/imgs/tabbar/category@selected.png"
+            },
+            {
+                "pagePath": "pages/cart/cart",
+                "text": "购物车",
+                "iconPath": "/imgs/tabbar/cart.png",
+                "selectedIconPath": "/imgs/tabbar/cart@selected.png"
+            },
+            {
+                "pagePath": "pages/my/my",
+                "text": "我的",
+                "iconPath": "/imgs/tabbar/my.png",
+                "selectedIconPath": "/imgs/tabbar/my@selected.png"
+            }
+        ]
+    }
+}

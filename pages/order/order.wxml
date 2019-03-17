@@ -1,0 +1,114 @@
+<!--pages/order/order.wxml-->
+<view class='order-contain'>
+    <!--订单编号和下单时间，如果是旧订单就显示-->
+    <view class="order-basic-info" wx:if="{{orderInfo}}">
+        <view class="order-time-no">
+            <view>
+                <text class="key">下单时间:</text>
+                <text class="val">{{orderInfo.create_time}}</text>
+            </view>
+            <view>
+                <text class="key">订单编号:</text>
+                <text class="order-no-txt val">{{orderInfo.ord_no}}</text>
+            </view>
+        </view>
+        <view class="order-status">
+            <text class="order-status-txt unpay" wx:if="{{orderInfo.ord_status==0}}">待付款</text>
+            <text class="order-status-txt unpay" wx:if="{{orderInfo.ord_status==6}}">已取消</text>
+            <text class="order-status-txt unpay" wx:if="{{orderInfo.ord_status==4}}">退款中</text>
+            <text class="order-status-txt payed" wx:if="{{orderInfo.ord_status==1}}">待发货</text>
+            <text class="order-status-txt done" wx:if="{{orderInfo.ord_status==2}}">已发货</text>
+            <text class="order-status-txt done" wx:if="{{orderInfo.ord_status==5}}">已完成</text>
+            <text class="order-status-txt done" wx:if="{{orderInfo.ord_status==7}}">退款完成</text>
+        </view>
+    </view>
+    <!-- 收货地址 -->
+    <view class='address-view'>
+        <!-- 没有地址时 -->
+        <view wx:if="{{addressInfo==''}}" class='no-address' catchtap='goAddress'>
+            <text>+</text>
+            <text>添加收货地址</text>
+        </view>
+        <!-- 存在地址时 -->
+        <view wx:else class="have-address {{orderId!=''?'disabled':''}}" catchtap='goAddress'>
+            <view class='left-info'>
+                <view class='top-name'>
+                    <view>
+                        <image src="../../imgs/icon/user.png" /> {{addressInfo.add_name}}
+                    </view>
+                    <view>
+                        <image src="/imgs/icon/mobile.png" /> {{addressInfo.add_phone}}
+                    </view>
+                </view>
+                <view class='bot-detail'>
+                    {{addressInfo.add_province}}{{addressInfo.add_city}}{{addressInfo.add_country}}{{addressInfo.add_detail}}
+                </view>
+            </view>
+            <view class='right-tip' wx:if="{{orderId==''}}"> > </view>
+        </view>
+    </view>
+    <view class='kongxi'></view>
+    <!-- 要下单的商品 -->
+    <view class='product-list'>
+        <block wx:for="{{products}}">
+            <view wx:if="{{orderId==''}}" class='product-item'>
+                <view class='pro-img'>
+                    <image src="{{item.imgUrl}}" />
+                </view>
+                <view class='pro-info'>
+                    <view class='pro-name'>
+                        <text>{{item.name}}</text>
+                        <text>x{{item.counts}}</text>
+                    </view>
+                    <view class='pro-price'>￥{{item.price}}</view>
+                </view>
+            </view>
+            <view wx:if="{{orderId!=''}}" class='product-item'>
+                <view class='pro-img'>
+                    <image src="{{item.ima_url}}" />
+                </view>
+                <view class='pro-info'>
+                    <view class='pro-name'>
+                        <text>{{item.pro_name}}</text>
+                        <text>x{{item.counts}}</text>
+                    </view>
+                    <view class='pro-price'>
+                        <view>￥{{item.pro_price}}</view>
+                        <view>
+                            <view wx:if="{{item.needComment==1}}" class='qu-pinglun' catchtap='goComment' data-proid="{{item.pro_id}}">去评论</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </block>
+
+        <!-- 运费 -->
+        <view class='postage-price'>
+            <text style='font-size:28rpx;color:#333;'>运费：</text>
+            <text wx:if="{{addressInfo==''}}" style='font-size:22rpx;color:#999;'>（选择收货地址计算运费）</text>
+            <text wx:elif="{{notPass==1}}" style='font-size:22rpx;color:#93312E;'>（该地区暂不配送）</text>
+            <text wx:else style='font-size:28rpx;color:#93312E;'>+￥{{postage/100}}</text>
+        </view>
+    </view>
+    <!-- 底部的付款合计，下单 -->
+    <view class='fix-bottom'>
+        <view class='price-count'>
+            付款合计：￥{{(productPrice+postage)/100}}
+        </view>
+        <block wx:if="{{orderId==''}}">
+            <view class="go-pay {{notPass==1?'disabled':''}}" catchtap='payOrder'>
+                去付款
+            </view>
+        </block>
+        <block wx:else>
+            <view wx:if="{{orderInfo.ord_status==0}}" class="go-pay {{notPass==1?'disabled':''}}" catchtap='payOrderAgin'>
+                去付款
+            </view>
+            <view wx:wlse> </view>
+        </block>
+    </view>
+</view>
+
+<loading hidden="{{isLoading}}">
+    加载中...
+</loading>

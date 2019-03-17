@@ -1,0 +1,209 @@
+/* pages/order/order.wxss */
+.order-contain{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.address-view{
+    height: 140rpx;
+}
+.no-address{
+    width: 100%;
+    height: 140rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.no-address text{
+    font-size: 26rpx;
+    color: #999;
+}
+.have-address{
+    margin-left: 40rpx;
+    height: 140rpx;
+    display: flex;
+}
+.left-info{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+.top-name{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: #333;
+    font-size: 24rpx;
+    height: 40rpx;
+    margin-top: 10rpx;
+}
+.top-name view{
+    display: flex;
+    align-items: center;
+}
+.top-name image{
+    width: 28rpx;
+    height: 28rpx;
+    margin-right: 6rpx;
+}
+.bot-detail{
+    width: 100%;
+    font-size: 24rpx;
+    color: #666;
+    white-space: wrap;margin-bottom: 10rpx;
+}
+.right-tip{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-size: 26rpx;
+}
+.kongxi{
+    width: 100%;
+    height: 20rpx;
+    background-color: #f5f5f5;
+}
+.product-list{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+   padding-bottom: 82rpx;
+}
+.product-item{
+    width: 100%;
+    display: flex;
+     border-bottom: 1rpx solid #ccc;
+}
+.pro-img{
+    width: 140rpx;
+    height: 140rpx;
+    padding: 10rpx;
+    border: 1px solid #AB956D;
+    margin: 20rpx;
+}
+.pro-img image{
+    width:100%;
+    height: 100%;
+}
+.pro-info{
+    flex: 1;
+    margin:40rpx 20rpx 0rpx 0rpx;
+    display: flex;
+    flex-direction: column;
+    font-size: 24rpx;
+    color: #666;
+}
+.pro-name{
+    display: flex;
+    justify-content: space-between;
+}
+.pro-name text:first-child{
+    max-width: 400rpx;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.pro-price{
+    margin-top: 20rpx;
+    display: flex;
+    justify-content: space-between;
+}
+.postage-price{
+    width: 100%;
+    padding-left: 20rpx;
+    height: 60rpx;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    border-bottom: 1rpx solid #ccc;
+}
+
+.fix-bottom{
+    width: 100%;
+    height: 80rpx;
+    position: fixed;
+    bottom: 0rpx;
+    border-top: 1rpx solid #AB956D;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+}
+.price-count{
+    width: 70%;
+    height: 100%;
+    font-size: 26rpx;
+    color: #93312E;
+    padding-left: 20rpx;
+    display: flex;
+    align-items: center;
+}
+.go-pay{
+    width: 30%;
+    font-size: 26rpx;
+    color: #fff;
+    background-color: #AB956D;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.go-pay.disabled{
+    color: #e6e6e6;
+    pointer-events: none;
+}
+
+/* 订单编号和下单时间，如果是旧订单就显示 */
+.order-basic-info{
+    padding:20rpx 40rpx;
+    border-bottom: 1rpx solid #E9E9E9;
+    display: flex;
+}
+.order-time-no{
+    flex: 1;
+    font-size: 26rpx;
+}
+.order-status{
+    display: flex;
+    flex-basis: 110rpx;
+    align-items: center;
+    justify-content: flex-end;
+}
+.order-time-no view:first-child{
+   margin-bottom:15rpx ;
+}
+.order-time-no view .key{
+    color: #999999;
+}.order-time-no view .val{
+    margin-left: 10rpx;
+    color: #333;
+}
+/*订单三种状态*/
+.order-status-txt{
+    font-size: 24rpx;
+}
+.order-status-txt.unpay{
+    color: #B42F2D;
+}
+.order-status-txt.payed{
+    color: #AB956D;
+}
+.order-status-txt.done{
+    color: #57AB53;
+}
+
+
+.qu-pinglun{
+    width: 150rpx;
+    height: 50rpx;
+    border-radius: 4rpx;
+    border: 1rpx solid #aaa;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

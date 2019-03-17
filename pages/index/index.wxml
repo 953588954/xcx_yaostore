@@ -1,0 +1,70 @@
+<!--pages/index/index.wxml-->
+<import src="../../template/products-tpl.wxml" />
+
+<view class='container'>
+    <!-- 搜索框 -->
+    <view class='serach-main'>
+        <view class='serach-view'>
+            <image src="/imgs/icon/search.png" />
+            <input type='text' placeholder="商品名、商品首字母" placeholder-class="placeholder" confirm-type="搜索" bindconfirm="searchProduct" />
+            <image src="/imgs/icon/close.png" wx:if="{{showCloseImg}}" catchtap='catchCloseImg' />
+        </view>
+    </view>
+    <!-- 外层view控制首页显隐 -->
+    <view class='index-view' wx:if="{{!showCloseImg}}">
+        <!-- 轮播图 -->
+        <swiper indicator-dots="true" autoplay="true" interval="3000" circular="true" class='swiper'>
+            <block wx:for="{{banners}}" wx:key="index">
+                <swiper-item class="swiper-item">
+                    <image src='{{item.img_url.ima_url}}' class='swiper-img' data-id="{{item.product_id}}" mode='aspectFill' catchtap='touchProduct' />
+                </swiper-item>
+            </block>
+        </swiper>
+        <!-- 精选主题 -->
+        <view class='title'>
+            精选主题
+        </view>
+        <view class='topic'>
+            <view class='topic_item' bindtap='goTheme' data-theme='all'>
+                <image src='/imgs/icon/a_suoyou.png' />
+                <text>所有商品</text>
+            </view>
+            <view class='topic_item' bindtap='goTheme' data-theme='new'>
+                <image src='/imgs/icon/a_xinpin.png' />
+                <text>新品上市</text>
+            </view>
+            <view class='topic_item' bindtap='goTheme' data-theme='hot'>
+                <image src='/imgs/icon/a_remai.png' />
+                <text>热卖商品</text>
+            </view>
+            <view class='topic_item' bindtap='goTheme' data-theme='recommend'>
+                <image src='/imgs/icon/a_tuijian.png' />
+                <text>推荐商品</text>
+            </view>
+            <view class='topic_item' bindtap='goTheme' data-theme='postage'>
+                <image src='/imgs/icon/a_baoyou.png' />
+                <text>卖家包邮</text>
+            </view>
+            <view class='topic_item' bindtap='goTheme' data-theme='category'>
+                <image src='/imgs/icon/a_fenlei.png' />
+                <text>更多分类</text>
+            </view>
+        </view>
+        <!-- 家中常备 -->
+        <view class='title'>
+            家中常备
+        </view>
+        <template is="products" data="{{products}}" />
+    </view>
+    <!-- 搜索出来的商品 -->
+    <view wx:else class='search-product-view'>
+        <view wx:if="{{searchProducts.length>0}}" class="search-products">
+        <template  is="products" data="{{products:searchProducts}}" />
+        </view>
+        <view wx:else class='no-search-product'>没有搜索出相关商品</view>
+    </view>
+</view>
+
+<loading hidden="{{isLoading}}">
+    搜索中
+</loading>

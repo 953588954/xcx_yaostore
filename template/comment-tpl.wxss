@@ -1,0 +1,86 @@
+/* 评论列表 */
+.comment-box{
+    margin-left: 24rpx;
+    display: flex;
+    flex-direction: column;
+}
+.comment-title{
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 28rpx;
+    color: #212121;
+    border-bottom: 1px solid #ccc;
+    padding: 8rpx 0;
+    font-family: Microsoft YaHei;
+}
+.comment-list{
+    margin-right: 26rpx;
+}
+.comm-words-imgs,.comm-voice{
+    width: 100%;
+    border-bottom: 1rpx solid #f2e7e1;
+}
+.comment-list .header{
+    display: flex;
+    align-items: center;
+    height: 80rpx;
+    margin: 34rpx 0 20rpx 0;
+}
+.comment-list .head-img{
+    width: 80rpx;
+    height: 80rpx;
+    margin-right: 26rpx;
+}
+.comment-list .head-img image{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.comment-list .head-author{
+    line-height: 80rpx;
+    font-size: 26rpx;
+    color: #212121;
+}
+.comment-list .com-txt{
+    font-size: 26rpx;
+    color: #666;
+    line-height: 50rpx;
+}
+.comment-list .com-imgs{
+    display: flex;
+    margin-top: 18rpx;
+    margin-bottom: 30rpx;
+}
+.comment-list .com-imgs image{
+    max-width: 30%;
+    margin-right: 14rpx;
+    width: 220rpx;
+    height: 220rpx;
+    border:1px solid #ccc;
+}
+.comment-list .time{
+    font-size: 24rpx;
+    color: #999;
+    margin-bottom: 20rpx;
+}
+
+.comment-list .voice-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 200rpx;
+    height: 64rpx;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 6rpx;
+    margin-bottom: 30rpx;
+}
+.comment-list .voice-box image{
+    width: 64rpx;
+    height: 64rpx;
+}
+.comment-list .voice-box text{
+    margin-left: 70rpx;
+    color: #212121;
+    font-size: 22rpx;
+}

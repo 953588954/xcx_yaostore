@@ -1,0 +1,59 @@
+<!--pages/logistics/logistics.wxml-->
+<view class='logistics-container'>
+  <!-- 头部运单号、承运人 -->
+  <view class='number-main-box'>
+    <view class='number-main'>
+    <text>运单号：{{logisticsInfo.result.number}}</text>
+    <text>承运公司：{{logisticsInfo.result.expName}}</text>
+    <text>官方电话：{{logisticsInfo.result.expPhone}}</text>
+    </view>
+    
+    <view class='number-main-status'>
+        <block wx:if="{{logisticsInfo.result.deliverystatus=='1'}}">
+            在途中
+        </block>
+        <block wx:elif="{{logisticsInfo.result.deliverystatus=='2'}}">
+            正在派件
+        </block>
+        <block wx:elif="{{logisticsInfo.result.deliverystatus=='3'}}">
+            已签收
+        </block>
+        <block wx:elif="{{logisticsInfo.result.deliverystatus=='4'}}">
+            派送失败
+        </block>
+    </view>
+  </view>
+  <view class='kongxi'></view>
+  <!-- 物流信息 -->
+  <view class='logistics-info'>
+    <view class='logistics-main'>
+
+    <block wx:for="{{logisticsInfo.result.list}}" wx:key="index">
+      <view class="logistics-item {{index==0?'first':''}} {{index==logisticsInfo.result.list.length-1?'last':''}}">
+        <view class='item-info'>
+          {{item.status}}
+          <view class='dotted'></view>
+        </view>
+        <view class='item-time'> {{item.time}}</view>
+      </view>
+      
+    </block>
+    <!-- <view class="logistics-item last">
+        <view class='item-info'>
+          快递公司已接单
+          <view class='dotted'></view>
+        </view>
+        <view class='item-time'> {{logisticsInfo.send_good_time}}</view>
+      </view>
+     -->
+    </view>
+  </view>
+
+  <!-- 底部信息提供 -->
+  <view class='bot-info'>
+    阿里云 提供信息支持
+  </view>
+</view>
+<loading hidden="{{isLoading}}">
+加载中
+</loading>

@@ -1,0 +1,47 @@
+<!--pages/about-our/about-our.wxml-->
+<view class='about-our-container'>
+  <!-- 头部 -->
+  <view class='head-img'>
+      <image src="{{storeInfo.img.ima_url}}" mode='aspectFill' class='img' />  
+    <view class='tou-ming-ceng'></view>
+    <view class='fixed-img'>
+      <image src='/imgs/icon/yao_dian_1.jpg' />
+    </view>
+    <view class='fixed-title'>{{storeInfo.bus_name}}</view>
+  </view>
+  <!-- 简介 -->
+  <view class='store-description'>
+   <block wx:for="{{storeInfo.bus_description}}" wx:key="index"> 
+     <view class='des-item'>{{item}}</view> 
+     </block> 
+</view>
+  <view class='kongxi'></view>
+  <!-- 门店信息 -->
+  <view class='store-info'>
+    <view class='info-title'>- 铭玺药房地址 -</view>
+    <view class='info-item' data-lng="{{storeInfo.bus_lng}}" data-lat="{{storeInfo.bus_lat}}" catchtap='openlocation'>
+      <image src="/imgs/icon/dingwei.png" />
+      	 {{storeInfo.bus_address}} 
+    </view>
+    <view class='info-item'>
+      <image src="/imgs/icon/time.png" />
+      	 {{storeInfo.bus_open_day}} 
+    </view>
+     <view class='info-item'>
+      <image src="/imgs/icon/time.png" />
+      		 {{storeInfo.bus_open_time}} 
+    </view>
+    <view class='info-item phone' data-phone="{{storeInfo.phone}}" catchtap='callPhone'>
+      <image src="/imgs/icon/phone.png" />
+      			 {{storeInfo.phone}} [点击拨号] 
+    </view>
+  </view>
+  <!-- 底部技术支持 -->
+  <view class='bottom'>
+    技术支持 @郝矿杰
+  </view>
+</view>
+
+<loading hidden="{{isLoading}}">
+加载中...
+</loading>

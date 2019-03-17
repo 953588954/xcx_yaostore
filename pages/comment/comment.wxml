@@ -1,0 +1,57 @@
+<import src="../../template/comment-tpl.wxml" />
+<view class='comment-container'>
+    <template is="comment" data="{{...commentData}}"></template>
+    
+    <!-- 录音提示 -->
+    <view class='speak-tip' hidden='{{speakTip}}'>
+        <image src="/imgs/icon/lu_yin.gif" />
+    </view>
+    <!-- 底部评论区 -->
+    <view class='input-box'>
+        <view class='send-msg-box'>
+            <!-- 语音评论区 -->
+            <view hidden='{{speackFlag}}' class='input-item'>
+                <image src="/imgs/icon/wx_app_keyboard.png" class='comment-icon keyboard-icon' catchtap='showWenZi'></image>
+                <input class='input speak-input {{recodingClass}}' value='按住 说话' disabled='disabled' catchtouchstart='recordStart' catchtouchend='recordEnd' />
+                
+            </view>
+            <!-- 文字评论区 -->
+            <view hidden='{{!speackFlag}}' class='input-item'>
+                <image src='/imgs/icon/wx_app_speak.png' class='comment-icon speak-icon' ></image>
+                <!--吧语音上传注释 catchtap='showYuYin'  -->
+                <input class='input keyboard-input' value="{{inputVal}}" placeholder='说点什么吧……' bindinput='changeVal'></input>
+            </view>
+            <image src='/imgs/icon/wx_app_add.png' class='comment-icon add-icon' catchtap='showImage'></image>
+            <view class='submit-btn' catchtap='sendComment'>发送</view>
+        </view>
+        <!-- 选择图片 与拍照面板 -->
+        <view class='send-more-box' hidden='{{!sendMoreMsgFlag}}'>
+            <!-- 选择图片和拍照的按钮 -->
+            <view class='send-more-btns-main'>
+                <view class='more-btn-item' catchtap='chooseImage' data-category="album">
+                    <view class='more-btn-main'>
+                        <image src='/imgs/icon/wx_app_upload_image.png'></image>
+                    </view>
+                    <text class='btn-txt'>照片</text>
+                </view>
+                <view class='more-btn-item' catchtap='chooseImage' data-category="camera">
+                    <view class='more-btn-main'>
+                        <image src='/imgs/icon/wx_app_camera.png'></image>
+                    </view>
+                    <text class='btn-txt'>拍照</text>
+                </view>
+            </view>
+            <!-- 显示选择的图片 -->
+            <view class='send-more-result-main' hidden='{{chooseFiles.length==0}}'>
+                <block wx:for="{{chooseFiles}}" wx:for-index="idx">
+                    <view class="file-box {{deleteIndex==idx?'deleting':''}}">
+                        <view class='img-box'>
+                            <image src='{{item}}' mode='aspectFill' catchtap='previewImg' data-idx="{{idx}}"></image>
+                            <icon class='remove-icon' type='cancel' size='23' color='#B2B2B2' catchtap='deleteImage' data-idx="{{idx}}"></icon>
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,65 @@
+<!--pages/cart/cart.wxml-->
+<view class='cart-container' wx:if="{{localData.length>0}}">
+<block wx:for="{{localData}}" wx:key="index">
+  <!-- 商品列表 -->
+  <view class='product-item'>
+    <view class="item-select" data-id="{{item.id}}" catchtap='toggleSelect'>
+    
+      <image wx:if="{{item.isSelect}}" src='../../imgs/icon/selected.png' />
+      <image wx:else src="../../imgs/icon/noselected.png" />
+    </view>
+    <view class="item-img">
+      <image src="{{item.imgUrl}}" />
+    </view>
+    <view class="item-info">
+        <view class="item-top">
+          <text>{{item.name}}</text>
+          <text>¥{{item.price}}</text>
+        </view>
+        <view class="item-mid">
+          <view class='product-decOrInc'>
+            <view class="control-product {{item.counts==1?'disabled':''}}" catchtap='decProduct' data-id="{{item.id}}">-</view>
+            <view>{{item.counts}}</view>
+            <view class="control-product" catchtap='incProduct' data-id="{{item.id}}">+</view>
+          </view>
+          <view class="product-del">
+            <image src="../../imgs/icon/delete.png" catchtap='delProduct' data-id="{{item.id}}" />
+          </view>
+        </view>
+        <view class="item-bot">
+          <block wx:if="{{item.postage==0}}">
+          <text class="dosage">包邮</text>
+          </block>
+          <text wx:else class="not-dosage">有运费</text>
+        </view>
+    </view>
+  </view>
+</block>
+
+  <!-- 底部下单 -->
+  <view class="bot-order">
+    <view class="order-left">
+      <view class="all-select">
+        <image wx:if="{{localData.length==selectTypeCount}}" src='../../imgs/icon/all@selected.png' catchtap='allNotSelect' />
+        <image wx:else src="../../imgs/icon/all.png" catchtap='allSelect' />
+        <text>全选({{selectCount}})</text>
+      </view>
+      <view class="all-price">
+        合计：¥{{selectPrice}}
+      </view>
+    </view>
+    <view class="pay-order {{selectPrice==0?'disabled':''}}" catchtap='goOrder'>
+      <text>去下单</text>
+      <image wx:if="{{selectPrice==0}}" src="../../imgs/icon/arrow@grey.png" />
+      <image wx:else src="../../imgs/icon/arrow.png" />
+    </view>
+  </view>
+</view>
+
+<view class='cart-container' wx:else>
+    <view class='no-data'>您的购物车空空如也！</view>
+</view>
+
+<loading hidden="{{isLoading}}">
+正在加载中...
+</loading>

@@ -1,0 +1,103 @@
+<!--pages/my/my.wxml-->
+<view class="my-container {{hideModal==false?'disabled':''}}" >
+    <!-- 头部 头像 关于我们 -->
+    <view class='head-main'>
+        <view class='header-img'>
+            <image wx:if="{{userInfo.avatarUrl!=''}}" src="{{userInfo.avatarUrl}}" />
+            <image wx:else src="/imgs/icon/user@default.png" />
+            <block wx:if="{{userInfo.nickName!=''}}">
+            {{userInfo.nickName}}
+            </block>
+            <block wx:else>
+            游客
+            </block>
+        </view>
+        <view class='about-our' catchtap='goAboutOur'>
+            <image src="/imgs/icon/information.png" />
+            关于我们
+        </view>
+    </view>
+    <!-- 地址管理 设置 -->
+    <view class='scope-address'>
+        <view class='address' catchtap='goAddress'>
+            <view>
+                <image src="/imgs/icon/map.png" />
+                地址管理
+            </view>
+            <view>></view>
+        </view>
+        <view class='scope' catchtap='goScope'>
+            <view>
+                <image src="/imgs/icon/set.png" />
+                设置
+            </view>
+            <view>></view>
+        </view>
+    </view>
+    <!-- 我的订单 -->
+    <view class='my-order'>
+        我的订单
+    </view>
+     <block wx:for="{{orderList}}" wx:key="index"> 
+    <view class='order-item'>
+        <view class='order-no'>
+            <text>订单编号：</text>
+            <text>{{item.ord_no}}</text>
+        </view>
+        <view class='order-info' catchtap='showOrderDetail' data-id="{{item.ord_id}}">
+            <view class='info-img'>
+                <image src="{{item.ord_snap_img}}" />
+            </view>
+            <view class='info-name-status'>
+                <view class='info-name'>
+                    <text>{{item.ord_snap_name}}</text>
+                    <text>{{item.ord_total_count}}件商品</text>
+                </view>
+                <view wx:if="{{item.ord_status==0}}" class='info-status'>待付款</view>
+                <view wx:elif="{{item.ord_status==1}}" class='info-status'>待发货</view>
+                <view wx:elif="{{item.ord_status==2}}" class='info-status'>已发货</view>
+                <view wx:elif="{{item.ord_status==4}}" class='info-status'>退款中</view>
+                <view wx:elif="{{item.ord_status==5}}" class='info-status wancheng'>已完成</view>
+                <view wx:elif="{{item.ord_status==6}}" class='info-status'>已取消</view>
+                <view wx:elif="{{item.ord_status==7}}" class='info-status wancheng'>退款完成</view>
+            </view>
+        </view>
+        <view class='pay-price'>
+            <view class='price-left'>实付:￥{{item.total_price}}</view>
+            <view class='price-right'>
+                <block wx:if="{{item.ord_status==0}}">
+                <view class='see-wuliu' catchtap='cancelOrder' data-id="{{item.ord_id}}">取消订单</view>
+                <view class='waite-pay' catchtap='goPay' data-id="{{item.ord_id}}">付款</view>
+                </block>
+                <block wx:if="{{item.ord_status==1}}">
+                <view class='see-wuliu' catchtap='applyRefund' data-id="{{item.ord_id}}">申请退款</view>
+                </block>
+                <block wx:if="{{item.ord_status==2}}">
+                <view class='see-wuliu' catchtap='goLogistics' data-id="{{item.ord_id}}">查看物流</view>
+                <view class='queren-shouhuo' catchtap='confirmReceipt' data-id="{{item.ord_id}}">确认收货</view>
+                </block>
+                <block wx:if="{{item.ord_status==5}}">
+                <view wx:if="{{item.need_comment==1}}" class='qu-pinglun' catchtap='showOrderDetail' data-id="{{item.ord_id}}">去评论</view>
+                <view class='see-wuliu' catchtap='goLogistics' data-id="{{item.ord_id}}">查看物流</view>
+                </block>
+                <block wx:if="{{item.ord_status==6}}">
+                <view class='zaici-goumai' catchtap='deleteOrder' data-id="{{item.ord_id}}">删除订单</view>
+                </block>
+            </view>
+        </view>
+    </view>
+    </block>
+
+    <block wx:if="{{isGetAllOrders==true}}">
+   <view class='hua-to-bottom'>滑到底了~</view>
+   </block>
+</view>
+
+<!-- 用户点击 申请退款 出现模态框 -->
+<view class='refundModal' hidden='{{hideModal}}'>
+        <view class='refund-title'>请填写退款理由</view>
+        <view class='refund-text'>
+            <textarea placeholder='是贫穷限制了你么？' placeholder-class='placeholder' fixed='true' class='textarea' bindconfirm='submitRefund'></textarea>
+        </view> 
+        <view class='back' catchtap='hiddenModal'>退出</view>
+</view>

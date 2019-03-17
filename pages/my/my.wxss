@@ -1,0 +1,214 @@
+/* pages/my/my.wxss */
+.my-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
+    font-size: 26rpx;
+}
+.head-main{
+    width: 100%;
+    height: 160rpx;
+    background-color: #AB956D;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-img,.about-our{
+    margin-left: 30rpx;
+    margin-right: 30rpx;
+    display: flex;
+    align-items: center;
+    font-size: 26rpx;
+    color: #fff;
+}
+.header-img image{
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 100rpx;
+    margin-right: 16rpx;
+}
+.about-our image{
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 16rpx;
+}
+
+.scope-address{
+    margin-top: 30rpx;
+    border-bottom: 1px solid #dbdbdb;
+    border-top: 1px solid #dbdbdb;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+.scope-address image{
+    width:32rpx;
+    height: 32rpx;
+    margin-right: 12rpx;
+}
+.address,.scope{
+    margin:0rpx 30rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 28rpx;
+    color: #999;
+    padding: 14rpx 0rpx;
+}
+.address{
+    border-bottom:1px solid #ddd;
+}
+.address view,.scope view{
+    display: flex;
+    align-items: center;
+}
+
+.my-order{
+    width: 100%;
+    height: 80rpx;
+    border-bottom:1px solid #dbdbdb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    margin-top: 30rpx;
+    background-color: #fff;
+}
+.order-item{
+    width: 100%;
+    margin-bottom: 10rpx;
+    background-color: #fff;
+}
+.order-no,.order-info,.pay-price{
+    margin-left: 30rpx;
+    padding: 16rpx 0rpx;
+    display: flex;align-items: center;
+}
+.order-no,.order-info{
+    border-bottom: 1px solid #dbdbdb;
+    color: #666;
+}
+.info-img{
+    width: 110rpx;
+    height: 110rpx;
+    padding: 10rpx;
+    border:1px solid #AB956D;
+}
+.info-img image{
+    width: 100%;
+    height: 100%;
+}
+.info-name-status{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+}
+.info-name{
+    display: flex;
+    flex-direction: column;
+    margin-left: 16rpx;
+}
+.info-status{
+    margin-right: 16rpx;
+    font-size: 24rpx;
+    color: #cb3825;
+}
+.info-status.fahuo{
+    color: #cb3825;
+}
+.info-status.wancheng{
+    color:black;
+}
+.pay-price{
+    justify-content: space-between;
+}
+.price-right{
+    display: flex;
+    align-items: center;
+}
+.price-right view{
+    margin-right: 16rpx;
+}
+.waite-pay{
+    width: 150rpx;
+    height: 50rpx;
+    color: #fff;
+    background-color: #cb3825;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.see-wuliu,.qu-pinglun{
+    width: 150rpx;
+    height: 50rpx;
+    border-radius: 4rpx;
+    border: 1rpx solid #aaa;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.queren-shouhuo,.zaici-goumai{
+    width: 150rpx;
+    height: 50rpx;
+    border-radius: 4rpx;
+    border: 1rpx solid #cb3825;
+    color: #cb3825;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 点击退款 出现的模态框 */
+.refundModal{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background-color: #000;
+    opacity: 0.8;
+    top:0;
+    left:0;
+}
+.refundModal .refund-title{
+    position: relative;
+    width: 100%;
+    top:300rpx;
+    color: #fff;
+    font-size: 32rpx;
+    font-weight: bold;
+    text-align: center;
+}
+.refundModal .refund-text{
+    position: relative;
+    width: 100%;
+    top:340rpx;
+    color: #333;
+    font-size: 28rpx;
+}
+.placeholder{
+    color: #999;
+}
+.refundModal .textarea{
+    width:450rpx;
+    height: 240rpx;
+    border-radius: 10rpx;
+    background-color: #fff;
+    padding: 4rpx;
+    margin: 0 auto;
+    opacity: 1;
+}
+.refundModal .back{
+    position: relative;
+    top: 380rpx;
+    width:450rpx;
+    height: 100rpx;
+    border-radius: 10rpx;
+    background-color: red;
+    color: #fff;
+    line-height: 100rpx;
+    text-align: center;
+    margin: 0 auto;
+}
+

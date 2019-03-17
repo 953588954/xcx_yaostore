@@ -1,0 +1,23 @@
+<template name="products">
+    <view class='product_list'>
+    <block wx:for="{{products}}" wx:key="index">
+        <view class='product_item' data-id="{{item.pro_id}}" catchtap='touchProduct'>
+            <view class='product_img'>
+                <block wx:if="{{item.ima_url}}">
+                    <image src='{{item.ima_url}}' />
+                </block>
+                <block wx:else>
+                    <image src='{{item.topic_img.ima_url}}' />
+                </block>
+            </view>
+            <view class='product_name'>
+              {{item.pro_name}}
+            </view>
+            <view class='product_price'>
+             ¥{{item.pro_price}}
+            </view>
+        </view>
+    </block>
+        
+    </view>
+</template>

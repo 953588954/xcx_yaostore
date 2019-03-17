@@ -1,0 +1,173 @@
+/* pages/comment/comment.wxss */
+@import "../../template/comment-tpl.wxss";
+.comment-container{
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: 130rpx;
+}
+.input-box{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    min-height: 100rpx;
+    background-color: #EAE8E8;
+}
+.input-box .send-msg-box{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 20rpx 0;
+}
+.input-box .input-item{
+    margin:0 5rpx;
+    flex: 1;
+    width: 0%;
+    position: relative;
+}
+.input-box .input-item .comment-icon{
+    position: absolute;
+    left: 5rpx;
+    top: 6rpx;
+}
+.input-box .input-item .input{
+    border: 1rpx solid #D5D5D5;
+    background-color: #fff;
+    border-radius: 3rpx;
+    line-height: 65rpx;
+    margin: 5rpx 0 5rpx 75rpx;
+    font-size: 24rpx;
+    color: #838383;
+    padding: 0 2%;
+}
+.input-box .input-item .speak-input{
+    text-align: center;
+    color: #212121;
+    height: 65rpx;
+}
+.input-box .input-item .keyboard-input{
+    width: auto;
+    max-height: 500rpx;
+    height: 65rpx;
+    word-break: break-all;
+    overflow: auto;
+}
+.input-box .input-item .recoding{
+    background-color: #ccc;
+}
+.input-box .input-item .comment-icon.speak-icon{
+    width: 62rpx;
+    height: 62rpx;
+}
+.input-box .input-item .comment-icon.keyboard-icon{
+    left: 6rpx;
+    height: 60rpx;
+    width: 60rpx;
+}
+.input-box .add-icon{
+    margin: 0 5rpx;
+    height: 65rpx;
+    width: 65rpx;
+    transform: scale(0.9);
+    margin-top: 2rpx;
+}
+.input-box .submit-btn{
+    font-size: 24rpx;
+    margin-top: 5rpx;
+    margin-right: 8rpx;
+    line-height: 60rpx;
+    width: 120rpx;
+    height: 60rpx;
+    background-color: #4A6141;
+    border-radius: 5rpx;
+    color: #fff;
+    text-align: center;
+    font-family: Microsoft Yahei;
+}
+
+/* 发送图片样式 */
+.send-more-box .more-btn-item{
+    display: inline-block;
+    width: 110rpx;
+    height: 145rpx;
+    margin-left: 35rpx;
+    text-align: center;
+}
+.more-btn-main{
+    width: 100%;
+    height: 60rpx;
+    text-align: center;
+    border: 1px solid #D5D5D5;
+    border-radius: 10rpx;
+    background-color: #fbfbfc;
+    margin: 0 auto;
+    padding: 25rpx 0;
+}
+.more-btn-main image{
+    width: 60rpx;
+    height: 60rpx;
+}
+.send-more-box .more-btn-item .btn-txt{
+    color: #888888;
+    font-size: 24rpx;
+    margin: 10rpx 0;
+}
+.send-more-result-main{
+    margin-top: 30rpx;
+}
+.send-more-result-main .file-box{
+    margin-left: 35rpx;
+    height: 160rpx;
+    width: 160rpx;
+    position: relative;
+    display: inline-block;
+}
+.send-more-result-main .file-box.deleting{
+    animation: deleting 0.5s ease;
+    animation-fill-mode: forwards;
+}
+@keyframes deleting{
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(0);
+    }
+}
+.send-more-result-main image{
+    height: 100%;
+    width: 100%;
+}
+.send-more-result-main .remove-icon{
+    position: absolute;
+    right: 5rpx;
+    top: 5rpx;
+}
+.send-more-result-main .file-box .img-box{
+    height: 100%;
+    width: 100%;
+}
+.speak-tip{
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    top: 35vh;
+}
+.speak-tip image{
+    width:400rpx;
+    height: 400rpx;
+    margin: 0 auto;
+}
+
+.ceshi{
+    width: 300rpx;
+    height: 60rpx;
+    border: 1px solid black;
+    border-radius: 20rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26rpx;
+}
+
+
+

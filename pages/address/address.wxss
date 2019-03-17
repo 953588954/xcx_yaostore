@@ -1,0 +1,87 @@
+/* pages/address/address.wxss */
+.address-container{
+    width: 100%;
+    background-color: #fff;
+}
+.address-list{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 102rpx;
+}
+.address-item{
+    width: 100%;
+    border-bottom: 1px solid #999;
+}
+.address-main{
+    margin: 15rpx 30rpx;
+    display: flex;
+    flex-direction: column;
+}
+.add-top{
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 6rpx;
+}
+.top-name{
+    font-size: 30rpx;
+    color: #333;
+}
+.top-name text:last-child{
+    margin-left: 10rpx;
+    font-weight: bold;
+}
+.top-detail{
+    font-size: 24rpx;
+    color: #666;
+}
+
+.add-bot{
+    display: flex;
+    justify-content: space-between;
+    height: 50rpx;
+    align-items: center;
+    font-size: 26rpx;
+    color: #666;
+}
+.add-bot image{
+    width: 36rpx;
+    height: 36rpx;
+    margin-right: 6rpx;
+}
+.bot-left,.bot-right{
+    display: flex;
+    align-items: center;
+}
+
+.no-addressInfo{
+    width: 100%;
+    height: 80rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26rpx;
+    color: #999;
+}
+
+.add-address-btn{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 100rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24rpx;
+    color: #fff;
+    background-color: red;
+}
+
+.add-address-btn text:first-child{
+    font-size: 40rpx;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}

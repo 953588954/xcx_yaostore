@@ -1,0 +1,16 @@
+<!--pages/theme/theme.wxml-->
+<import src="../../template/products-tpl.wxml" />
+
+<view class='container'>
+    <view class='topic_img'>
+        <image src='{{theInfo.img.ima_url}}' mode='aspectFill' />
+    </view>
+    <view class='title'>
+        {{name}}
+    </view>
+    <template is="products" data="{{products:proInfo}}" />
+
+    <block wx:if="{{!hasProduct}}">
+        <view class='hua-to-bottom'>滑到底了~</view>
+    </block>
+</view>

@@ -1,0 +1,54 @@
+<template name="comment">
+    <!-- 评论区 -->
+    <view class='comment-box'>
+        <view class='comment-title'>评论...... (共{{totalCounts}}条)</view>
+        <view class='comment-list'>
+            
+            <block wx:for="{{commentsInfo}}" wx:key="index">
+            <!-- 文字和图片评论 -->
+            <view wx:if="{{item.yuyin_url==''}}" class='comm-words-imgs'>
+                <view class='header'>
+                    <view class='head-img'>
+                        <image src="{{item.user.use_head_img}}"></image>
+                    </view>
+                    <view class='head-author'>
+                        {{item.user.use_nickname}}
+                    </view>
+                </view>
+                <view class='body'>
+                    <view class='com-txt'>{{item.com_description}}</view>
+                    <view class='com-imgs'>
+                        <block wx:for="{{item.img}}" wx:for-index="idx" wx:for-item="item2">
+                        <image src="{{item2.ima_url}}" mode='aspectFill'></image>
+                        </block>
+                    </view>
+                </view>
+                <view class='time'>{{item.com_time}}</view>
+            </view>
+            <!-- 语音评论 -->
+             <!-- <view wx:else class='comm-voice'>
+                <view class='header'>
+                    <view class='head-img'>
+                        <image src="{{item.user.use_head_img}}"></image>
+                    </view>
+                    <view class='head-author'>
+                        {{item.user.use_nickname}}
+                    </view>
+                </view>
+                <view class='body'>
+                    <view class='voice-box' catchtap='bofangVoice' data-idx="{{index}}" data-path="{{item.yuyin_url}}">
+                        <image src='/imgs/icon/wx_app_voice.png'></image>
+                        <text>{{item.yuyin_second}}''</text>
+                    </view>
+                </view>
+                <view class='time'>{{item.com_time}}</view>
+            </view> -->
+            </block>
+             
+           
+        </view>
+        <block wx:if="{{isGetAllOrders==true}}">
+            <view class='hua-to-bottom'>滑到底了~</view>
+        </block>
+    </view>
+</template>

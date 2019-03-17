@@ -1,0 +1,31 @@
+<!--pages/category/category.wxml-->
+<view class='category-container'>
+    <view class='category-main'>
+        <view class='category-left'>
+            <block wx:for="{{categorys}}" wx:for-index="idx" wx:key="index">
+            <view class='title-item {{idx==index?"checked":""}}' data-id="{{item.cat_id}}" data-idx="{{idx}}" bindtap='changCategory'>{{item.cat_name}}</view>
+            </block>
+        </view>
+        <view class='category-right'>
+            <view class='cat-topicimg'>
+                 <image src='{{catInfo.img.ima_url}}' mode='aspectFill' /> 
+            </view>
+            <view class='title'>
+              <view class='line'></view>
+               <view>{{catInfo.cat_name}}</view> 
+               <view class='line'></view>
+            </view>
+            <view class='product-main'>
+                <block wx:for="{{proInfo}}" wx:key="index">
+                 <view class='pro-item' data-id="{{item.pro_id}}" catchtap='touchProduct'>
+                    <image src='{{item.topic_img.ima_url}}' />
+                    <text>{{item.pro_name}}</text>
+                </view> 
+                </block>
+            </view>
+        </view>
+    </view>
+    <loading hidden="{{isLoading}}">
+      正在加载...
+    </loading>
+</view>

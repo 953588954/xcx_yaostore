@@ -1,0 +1,82 @@
+<!--pages/product/product.wxml-->
+<import src="../../template/comment-tpl.wxml" />
+<view class='container'>
+    <!-- 悬浮购物车 -->
+    <view class="top-cart {{isShake?'animate':''}}" catchtap='goCart'>
+        <image src='/imgs/icon/cart@top.png' class='cart-img' />
+        <view class='totalCounts'>{{cartTotalCounts}}</view>
+    </view>
+    <!-- 商品轮播图 -->
+    <view class='swiper-view'>
+        <swiper circular="true" class='swiper' bindchange='getSwiperIndex'>
+            <block wx:for="{{productInfo.product_imgs}}" wx:key="index">
+                <swiper-item class="swiper-item">
+                    <image src='{{item.ima_url}}' class='swiper-img' mode='aspectFit' />
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class='footer-tip'>{{idx}}/{{imgsCount}}</view>
+    </view>
+    <!-- 加入购物车 -->
+    <view class='add-cart-view'>
+        <view class='add-cart'>
+            <view class='picker'>
+                <picker range="{{range}}" bindchange="changeNumber">
+                    <view>
+                        <text>数量</text>
+                        <text>{{number}}</text>
+                        <text>∨</text>
+                    </view>
+                </picker>
+            </view>
+            <view class="add {{productInfo.pro_stock<1?'disabled':''}}" catchtap='addCart'>
+                <text>加入购物车</text>
+                <image src='/imgs/icon/cart.png' />
+                <image class="small-top-img {{isFly?'animate':''}}" src="{{productInfo.product_imgs[0].ima_url}}" mode="aspectFill" style="{{translateStyle}}"></image>
+            </view>
+        </view>
+    </view>
+    <!-- 商品简单信息 -->
+    <view class='product-info'>
+        <text class='name'>{{productInfo.pro_name}}</text>
+        <text class='price'>¥ {{productInfo.pro_price}}</text>
+    </view>
+
+    <view class='product-freight'>
+        <icon type='success' size='14' color='green' />
+        <text>库存：{{productInfo.pro_stock}}</text>
+        <icon type='success' size='14' color='green' />
+        <text>邮费：<block wx:if="{{productInfo.pro_postage==0}}">包邮</block><block wx:else>有运费</block></text>
+    </view>
+    <!-- 三个商品属性标题 -->
+    <view class='product-attr-title'>
+        <block wx:for="{{['商品详情','商品评论','售后说明']}}" wx:key="index">
+            <view class="attr-title {{index==attrIndex?'checked':''}}" data-index="{{index}}" catchtap='touchTitle'>
+                {{item}}
+            </view>
+        </block>
+    </view>
+    <!-- 商品详情 -->
+    <view class='product-attr' hidden="{{attrIndex!=0}}">
+    <view><text>生产企业：</text><text>{{productInfo.pro_producer}}</text></view>
+    <view><text>批准文号：</text><text>{{productInfo.pro_approval_number}}</text></view>
+    <view><text>储藏方式：</text><text>{{productInfo.pro_deposit}}</text></view>
+    <view><text>剂型：</text><text>{{productInfo.dosage.dos_name}}</text></view>
+    <view><text>规格：</text><text>{{productInfo.pro_specification}}</text></view>
+    <view><text>功效：</text><text>{{productInfo.pro_effect}}</text></view>
+    <view><text>禁忌：</text><text>{{productInfo.pro_taboo}}</text></view>
+    <view class='attr-bottom'>请仔细阅读说明书，并在药师指导下购买和使用</view>
+  </view>
+  <!-- 商品评论 -->
+  <view class='product-comment' hidden="{{attrIndex!=1}}">
+    <template is="comment" data="{{...commentData}}"></template>
+  </view>
+  <!-- 售后说明 -->
+  <view class='after-onsale' hidden="{{attrIndex!=2}}">
+    <view>{{productInfo.pro_after_sale_description}}</view>
+  </view>
+</view>
+
+<loading hidden="{{isLoading}}">
+正在加载中...
+</loading>

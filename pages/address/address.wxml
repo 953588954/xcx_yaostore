@@ -1,0 +1,46 @@
+<!--pages/address/address.wxml-->
+<view class='address-container'>
+    <!-- 地址列表 -->
+    <view wx:if="{{addressInfo.length!=0}}" class='address-list'>
+    <block wx:for="{{addressInfo}}" wx:key="index">
+        <view class='address-item'>
+            <view class='address-main'>
+                <view class='add-top' catchtap='selectAddress' data-id="{{item.add_id}}">
+                    <view class='top-name'>
+                        <text>{{item.add_name}}</text>
+                        <text>{{item.add_phone}}</text>
+                    </view>
+                    <view class='top-detail'>
+                        {{item.add_province}} {{item.add_city}} {{item.add_country}} {{item.add_detail}}
+                    </view>
+                </view>
+                <view class='add-bot'>
+                    <view class='bot-left'>
+                        <image wx:if="{{item.add_default==1}}" src="/imgs/icon/selected.png" />
+                        <image wx:else src="/imgs/icon/noselected.png" catchtap='setDefaultAddress' data-id="{{item.add_id}}" />
+                        设为默认地址
+                    </view>
+                    <view class='bot-right' data-id="{{item.add_id}}" catchtap='delAddress'>
+                        <image src="/imgs/icon/delete.png" />
+                        删除
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+        
+    </view>
+    <!-- 没有地址时 -->
+    <view wx:else class='no-addressInfo'>
+        暂无地址信息
+    </view>
+    <!-- 底部添加地址按钮 -->
+    <view class='add-address-btn' catchtap='addAddress'>
+        <text>+</text>
+        <text>添加收货地址</text>
+    </view>
+</view>
+
+<loading hidden="{{isLoading}}">
+加载中...
+</loading>
