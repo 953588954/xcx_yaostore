@@ -20,15 +20,19 @@ class Base{
         if(params.setUpUrl==false){
             url = params.url;
         }
+        wx.showLoading({
+          title: '正在加载',
+        })
         wx.request({
             url: url,
             data:params.data,
             method:params.type,
             header:{
-                // 'content-type':'application/json',
+                'content-type':'application/json',
                 'token' : wx.getStorageSync('token')
             },
             success:function(res){
+                wx.hideLoading()
                 var statusCode = res.statusCode.toString();
                 var firstCode = statusCode.charAt(0);
                 if(firstCode=='2'){

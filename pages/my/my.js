@@ -1,10 +1,8 @@
 import { My } from "./my-model.js";
 import {Order} from "../order/order-model.js";
-// import { Base } from "../../utils/base.js";
-// var base = Base();
 var order = new Order();
 var my = new My();
-
+var app = getApp();
 Page({
 
     /**
@@ -17,34 +15,45 @@ Page({
         isGetAllOrders: false, //是否加载了所有订单
         hideModal:true,    //退款的模态框显隐
         refundId:-1,    //要退款的订单id
+      noreadnum: 0, //未读消息数量
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this._getUserInfo();
+        this._getUserInfo()
         this._getOrders(this.data.page);
+    },
+    getUserInfoEvt:function(detail){
+      if (detail.detail.errMsg == 'getUserInfo:ok') {
+        this._saveUserInfo(detail.detail.userInfo)
+      } else {
+        my.toast('拒绝授权后请在设置中打开', true, 'none')
+      }
     },
     //获取用户信息
     _getUserInfo: function () {
-        var that = this;
-        wx.getUserInfo({
-            lang: 'zh_CN',
-            success: function (res) {
-                //console.log(res.userInfo.avatarUrl);
-                var idx = res.userInfo.avatarUrl.lastIndexOf('/');
-                // console.log(res.userInfo.avatarUrl.slice(0,idx)+'/64');
-                //获取64x64大小头像
-                var userInfo = res.userInfo;
-                if (userInfo.avatarUrl != '') {
-                    userInfo.avatarUrl = userInfo.avatarUrl.slice(0, idx) + '/96';
-                }
-                that.setData({ userInfo: userInfo });
-                //保存用户信息
-                my.saveUserInfo(userInfo);
-            }
-        })
+      var that = this
+      wx.getSetting({
+        success(res) {
+          if (res.authSetting['scope.userInfo']) {
+            // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+            wx.getUserInfo({
+              lang: 'zh_CN',
+              success(res1) {
+                that._saveUserInfo(res1.userInfo)
+              }
+            })
+          }
+        }
+      })
+    },
+    _saveUserInfo:function(userInfo){
+      app.globalData.userInfo = userInfo
+      this.setData({userInfo: userInfo})
+      //保存用户信息
+      my.saveUserInfo(userInfo);
     },
     //获取订单列表
     _getOrders: function (page) {
@@ -267,7 +276,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        
+      
         if (wx.getStorageSync("isFromPayResultToMy")==true) {
             wx.setStorageSync("isFromPayResultToMy", false);
             var that = this;
@@ -281,6 +290,8 @@ Page({
                 });
             })
         }
+        //检测是否未读消息有小红点
+      this.setData({ noreadnum: app.globalData.noreadnum})
     },
 
     /**
@@ -313,5 +324,20 @@ Page({
             hideModal:true,
             refundId:-1
         });
-    }
+    },
+
+  goChat:function(){
+    if (!app.globalData.socketTask) {
+      my._showModal('提示','当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。',false)
+    } else {
+      if (app.globalData.userInfo.avatarUrl) {
+        wx.navigateTo({
+          url: '../chat/chat',
+        })
+      } else {
+        my.toast('请先点击登陆', true, 'none')
+      }
+    } 
+    
+  }
 })

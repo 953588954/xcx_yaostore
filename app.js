@@ -1,5 +1,6 @@
-import {Token} from "/utils/token.js";
-
+import {Token} from "/utils/token.js"
+import {Websocket} from "/utils/websocket.js"
+import {Config} from "./utils/config.js"
 
 App({
 
@@ -8,11 +9,46 @@ App({
    */
   onLaunch: function () {
       var token = new Token();
-      token.verifyToken();
+      token.verifyToken(this._websocketBack);
       //利用缓存 存入 点击地址id
       wx.setStorageSync("addressId", 0);
       //利用缓存 是否从支付结果页面 跳转到‘我的’页面 用来刷新我的页面订单
       wx.setStorageSync("isFromPayResultToMy", false);
+      //
+
+  },
+  //建立websocket连接
+  _websocketBack:function(token){
+    var websocket = new Websocket()
+    var socketTask = websocket.connet(token)
+    this.globalData.socketTask = socketTask
+    //请求接口得到未读消息数量
+    this.getNoReadNum(token)
+  },
+
+  //
+  getNoReadNum:function(token){
+    var that = this
+    wx.request({
+      url: Config.restUrl + 'api/v1/chat/noread/num',
+      header: {
+        'content-type': 'application/json',
+        'token': token
+      },
+      success: function (res) {
+        var noreadnum = res.data.noreadnum
+        that.globalData.noreadnum = noreadnum
+        if(noreadnum > 0) {
+          wx.setTabBarBadge({
+            index: 3,
+            text: '' + noreadnum
+          })
+        }
+      },
+      fail: function (res) {
+        console.log(res);
+      }
+    })
   },
 
   /**
@@ -33,5 +69,11 @@ App({
    */
   onError: function (msg) {
     
+  },
+
+  globalData:{
+    userInfo:{},
+    socketTask:null,
+    noreadnum: 0,
   }
 })

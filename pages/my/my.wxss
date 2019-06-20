@@ -212,3 +212,19 @@
     margin: 0 auto;
 }
 
+.user_info_btn{
+  font-size: 26rpx;
+  padding: 0rpx 40rpx;
+  letter-spacing: 8rpx;
+  color:#fff;
+  border-radius: 46rpx;
+  background-color: #ddd;
+}
+
+.red_dot{
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  background-color: red;
+  margin-right: 20rpx;
+}

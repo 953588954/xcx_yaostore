@@ -9,7 +9,7 @@
             {{userInfo.nickName}}
             </block>
             <block wx:else>
-            游客
+              <button class="user_info_btn" open-type="getUserInfo" bindgetuserinfo="getUserInfoEvt" lang='zh_CN'>登陆</button>
             </block>
         </view>
         <view class='about-our' catchtap='goAboutOur'>
@@ -26,12 +26,19 @@
             </view>
             <view>></view>
         </view>
-        <view class='scope' catchtap='goScope'>
+        <view class='address' catchtap='goScope'>
             <view>
                 <image src="/imgs/icon/set.png" />
                 设置
             </view>
             <view>></view>
+        </view>
+        <view class='scope' catchtap='goChat'>
+            <view>
+                <image src="/imgs/icon/kefu.png" />
+                联系客服
+            </view>
+            <view><span wx:if="{{noreadnum>0}}" class="red_dot"></span>></view>
         </view>
     </view>
     <!-- 我的订单 -->

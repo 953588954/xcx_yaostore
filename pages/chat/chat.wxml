@@ -1,0 +1,37 @@
+<!--pages/chat/chat.wxml-->
+<view class='chat-content'>
+   <view wx:if="{{has_more}}" class='more-center' catchtap='loadMore'>加载更多</view>
+  <block wx:for="{{msg_list}}" wx:key="id">
+    <view wx:if="{{item.date}}" class='time-center'>{{item.date}}</view>
+    <block wx:if="{{item.type==1}}">
+      <view class='left-line-view'>
+        <view class='head-box'>
+          <image src='/imgs/icon/kefu-head.jpg'></image>
+        </view>
+        <view class='msg-box'>
+        {{item.msg}}
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='right-line-view'>
+        <view class='msg-box'>
+        {{item.msg}}
+        </view>
+        <view class='head-box'>
+          <image src='{{headimg}}'></image>
+        </view>
+    </view>
+    </block>
+  </block>
+</view>
+  
+
+<view class='fix-input'>
+  <view class='input-btn-box'>
+    <view class='input-box'>
+      <input placeholder="请输入您要咨询的问题" maxlength="100" bindinput="getMsg" value="{{message}}"></input>
+    </view>
+    <view class='send-btn' catchtap='sendMessage'>发送</view>
+  </view>
+</view>
